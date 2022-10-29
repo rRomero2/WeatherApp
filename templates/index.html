@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 style="text-align:center">{% block title %} Weather {% endblock %}</h1>
+    {% for city in cityToSearch %}      <!-- Display cities of interest -->
+        <fieldset class="weatherDisplay">
+            <img src="{{iconURL[loop.index0]}}" style="width:150px; height:150px">
+            <h3 style="text-align: left">{{cityToSearch[loop.index0]}}</h3>
+            <p style="text-align:left; font-size:0.9em"><sup>
+                ({{coordinates[loop.index0]['lat']}}, {{coordinates[loop.index0]['lon']}})</sup></p>
+            {% for name, info in previousWeatherData[loop.index0].items() %}
+                <h3>{{name}}</h3>
+                <p>{{info}}</p>
+            {% endfor %}
+        </fieldset><br><br>
+
+
+    {% endfor %}
+
+
+
+
+{% endblock %}

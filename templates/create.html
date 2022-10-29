@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Search City {% endblock %}</h1>
+    <form method="post" id="regForm">
+        <fieldset>
+            <legend><strong>Search by</strong></legend>
+            <input type="radio" name="searchType" id="byCity" value="byCity">
+            <label for="byCity">By city</label>
+            <br>
+            <input type="radio" name="searchType" id="byZip" value="byZip">
+            <label for="byZip">By zip/postal code</label>
+
+            <br>
+            <br>
+
+            <label for="cityInput"><strong>City:</strong></label>
+            <br>
+            <input type="text" name="cityInput" id="cityInput" placeholder="Optional"
+                   value="{{ request.form['cityInput'] }}">
+
+            <br><br>
+            <label for="zipInput"><strong>Zip/postal code:</strong></label>
+            <br>
+            <input type="text" name="zipInput" id="zipInput" placeholder="Optional"
+                   value="{{ request.form['zipInput'] }}">
+
+            <br><br>
+            <label for="countryInput"><strong>Country code:</strong></label>
+            <br>
+            <input type="text" name="countryInput" id="countryInput" placeholder="Optional" pattern="[A-Z]{2}"
+                   value="{{ request.form['countryInput'] }}">
+            <p><em>Optional: enter country code in
+                <a href="http://sites.utoronto.ca/webdocs/HTMLdocs/Book/Book-3ed/appe/iso3166.html"
+                target="_blank">ISO 3166 format</a></em></p>
+        </fieldset><br>
+
+        <fieldset>
+            <legend><strong>Units</strong></legend>
+            <p><em>What units would you like to get your info in?</em></p>
+            <input type="radio" name="units"
+                   id="metric" checked
+                   value="metric">
+            <label for="metric">Metric</label><br>
+            <input type="radio" name="units"
+                   id="imperial"
+                   value="imperial">
+            <label for="imperial">Imperial</label><br>
+            <input type="radio" name="units"
+                   id="kelvin"
+                   value="standard">
+            <label for="kelvin">Kelvin</label>
+            <br>
+        </fieldset><br><br>
+
+        <fieldset>
+            <legend><strong>Highlights</strong></legend>
+            <p><em>What info would you like to get?</em></p>
+            <ul class="checkbox">
+                <li>
+                <input type="checkbox" name="cloud"
+                       id="cloud"
+                       value="Cloud">
+                <label for="cloud">Cloudiness</label></li>
+
+                <li>
+                <input type="checkbox" name="pressure"
+                       id="pressure"
+                       value="Presure">
+                <label for="pressure">Pressure</label></li>
+
+                <li>
+                <input type="checkbox" name="snow1Hour"
+                       id="snow1Hour"
+                       value="Snow (past 1 Hour)">
+                <label for="snow1Hour">Snow, last 1 hour</label></li>
+
+                <li>
+                <input type="checkbox" name="visibility"
+                       id="visibility"
+                       value="Visibility">
+                <label for="visibility">Visibility</label></li>
+
+                <li>
+                <!-- Always post current temperature, button only for user display-->
+                <input type="checkbox" name="currentTempVisualOnly"
+                       id="currentTemp" checked disabled>
+                <label for="currentTemp">Current temperature</label></li>
+                <!-- Hidden button to post current temperature -->
+                <input name="currentTemp" type="hidden" value="Current Temperature">
+
+                <li>
+                <input type="checkbox" name="rain1Hour"
+                       id="rain1Hour"
+                       value="Rain (past 1 Hour)">
+                <label for="rain1Hour">Rain, last 1 hour</label></li>
+
+                <li>
+                <input type="checkbox" name="snow3Hour"
+                       id="snow3Hour"
+                       value="Snow (past 3 Hours)">
+                <label for="snow3Hour">Snow, last 3 hours</label></li>
+
+                <li>
+                <input type="checkbox" name="windDirection"
+                       id="windDirection"
+                       value="Wind Direction">
+                <label for="windDirection">Wind direction</label></li>
+
+                <li>
+                <input type="checkbox" name="description"
+                       id="description" checked
+                       value="Description">
+                <label for="description">Description</label></li>
+
+                <li>
+                <input type="checkbox" name="rain3Hour"
+                       id="rain3Hour"
+                       value="Rain (past 3 Hours)">
+                <label for="rain3Hour">Rain, last 3 hours</label></li>
+
+                <li>
+                <input type="checkbox" name="sunrise"
+                       id="sunrise"
+                       value="Sunrise">
+                <label for="sunrise">Sunrise</label></li>
+
+                <li>
+                <input type="checkbox" name="windSpeed"
+                       id="windSpeed"
+                       value="Wind Speed">
+                <label for="windSpeed">Wind speed</label></li>
+
+                <li>
+                <input type="checkbox" name="humidity"
+                       id="humidity"
+                       value="Humidity">
+                <label for="humidity">Humidity</label></li>
+
+                <li>
+                <input type="checkbox" name="realFeel"
+                       id="realFeel" checked
+                       value="Real Feel">
+                <label for="realFeel">Real feel</label></li>
+
+                <li>
+                <input type="checkbox" name="sunset"
+                       id="sunset"
+                       value="Sunset">
+                <label for="sunset">Sunset</label></li>
+
+            </ul>
+        </fieldset>
+
+
+        <p><em>Save previous searches and add this search to clipboard?</em></p>
+        <div class="previous">
+            <input type="radio" name="previousSearches"
+                   id="saveSearches"
+                   value="save">
+            <label for="saveSearches">Save and add</label>
+            <br>
+            <input type="radio" name="previousSearches"
+                   id="discardSearches"
+                   value="discard">
+            <label for="discardSearches">Discard previous</label>
+
+        </div>
+        <br>
+        <button type="submit" id="getWeather">Get weather</button>
+    </form>
+{% endblock %}

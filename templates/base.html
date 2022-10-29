@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %} - Weather Forecast</title>
+    <link rel="stylesheet" href="/static/main.css">
+</head>
+<body id="#grad">
+    <nav>
+        <a href="{{ url_for('index') }}">Weather Forecast</a>
+        <div class="navSearch">
+            <a href="{{ url_for('create') }}">Find City <img src="/static/lookupIcon.png"
+        alt="Search magnifying glass"
+        style="width:30px;height:30px;"/></a>
+        </div>
+
+    </nav>
+    <hr>
+    <div class="content">
+        {% for message in get_flashed_messages() %}
+            <div class="alert">{{ message }}</div>
+        {% endfor %}
+        {% block content %} {% endblock %}
+    </div>
+
+</body>
+</html>
